@@ -7,7 +7,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 /**
- * Created by mingzhi.xie on 2018/9/27.
+ *
+ * @author mingzhi.xie
+ * @date 2018/9/27
  *
  * 跨域资源共享
  */
@@ -17,11 +19,16 @@ public class MyConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.addAllowedOrigin("*");        // 指定授权访问的域
-        corsConfiguration.addAllowedMethod("*");        // 授权请求的方法
-        corsConfiguration.addAllowedHeader("*");        // 授权请求的头
-        corsConfiguration.addExposedHeader("");         // 授权响应的头
-        corsConfiguration.setAllowCredentials(true);    // 凭证
+        // 指定授权访问的域
+        corsConfiguration.addAllowedOrigin("*");
+        // 授权请求的方法
+        corsConfiguration.addAllowedMethod("*");
+        // 授权请求的头
+        corsConfiguration.addAllowedHeader("*");
+        // 授权响应的头
+        corsConfiguration.addExposedHeader("");
+        // 凭证
+        corsConfiguration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
