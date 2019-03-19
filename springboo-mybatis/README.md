@@ -11,3 +11,11 @@
 - 确保完成响应后，关闭它
 
 ## 整合
+### mybatis-spring
+- SqlSessionFactoryBean实现了Spring的InitializingBean
+- 初始化了SqlSessionFactoryBuilder，通过buildSqlSessionFactory()方法构造了SqlSessionFactory
+- SqlSessionTemplate实现了SqlSession
+### mybatis-spring-boot-autoconfigure
+- MybatisAutoConfiguration实现了Spring的InitializingBean
+- 在利用@Bean依赖注入SqlSessionFactory时，调用SqlSessionFactoryBean获取了SqlSessionFactory
+- 利用@Bean依赖注入了SqlSessionTemplate
