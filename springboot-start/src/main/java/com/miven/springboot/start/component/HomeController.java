@@ -5,7 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by mingzhi.xie on 2018/9/27.
+ *
+ * @author mingzhi.xie
+ * @date 2018/9/27
  */
 @RestController
 public class HomeController {
