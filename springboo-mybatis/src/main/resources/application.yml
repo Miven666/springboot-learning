@@ -1,0 +1,8 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    type: org.apache.ibatis.datasource.pooled.PooledDataSource
+    url: jdbc:mysql://192.168.1.48:3306/springbootlearing
+    name: root
+    password: root123
