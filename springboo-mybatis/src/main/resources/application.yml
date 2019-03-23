@@ -1,8 +1,14 @@
 server:
   port: 8081
+  servlet:
+    context-path: /app
 spring:
   datasource:
-    type: org.apache.ibatis.datasource.pooled.PooledDataSource
-    url: jdbc:mysql://192.168.1.48:3306/springbootlearing
-    name: root
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.1.48:3306/springbootlearing?useSSL=false&useUnicode=true&characterEncoding=utf-8
+    username: root
     password: root123
+
+
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
