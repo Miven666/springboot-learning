@@ -9,13 +9,13 @@
         <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin" />
 
         <commentGenerator>
-            <property name="addModelClassComment" value="true"/>
+            <property name="addRemarkComments" value="true" />
         </commentGenerator>
 
         <!--数据库链接URL，用户名、密码 -->
         <jdbcConnection
                 driverClass="com.mysql.jdbc.Driver"
-                connectionURL="jdbc:mysql://127.0.0.1/springbootlearing"
+                connectionURL="jdbc:mysql://127.0.0.1/springbootlearing?useSSL=false"
                 userId="root"
                 password="root123" />
 
