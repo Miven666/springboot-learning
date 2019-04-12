@@ -3,10 +3,11 @@ package com.miven.springboot.mybatis.controller;
 import com.miven.springboot.mybatis.entity.Fruit;
 import com.miven.springboot.mybatis.mapper.FruitMapper;
 import jdk.nashorn.internal.parser.JSONParser;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * 水果
@@ -17,12 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/fruit")
 public class FruitController {
 
-    private final FruitMapper fruitMapper;
-
-    @Autowired
-    public FruitController(FruitMapper fruitMapper) {
-        this.fruitMapper = fruitMapper;
-    }
+    @Resource
+    private FruitMapper fruitMapper;
 
     @GetMapping("/insert")
     public String insert() {
