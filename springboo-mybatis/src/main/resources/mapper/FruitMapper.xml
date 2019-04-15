@@ -6,4 +6,8 @@
       insert into fruit (name, number) values (#{name}, #{number});
     </insert>
 
+    <select id="select" resultType="com.miven.springboot.mybatis.entity.Fruit">
+        select name, number from fruit where name = #{fruit.name} order by #{order};
+    </select>
+
 </mapper>

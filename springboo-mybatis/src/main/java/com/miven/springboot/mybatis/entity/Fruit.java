@@ -13,6 +13,8 @@ import java.io.Serializable;
 @Data
 public class Fruit implements Serializable {
 
+    private static final long serialVersionUID = 1047204607917402451L;
+
     private int id;
 
     private String name;
