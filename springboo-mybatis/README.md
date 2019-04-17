@@ -1,6 +1,6 @@
 # SpringBoot 整合 Mybatis
 
-## 为整合前
+## 未整合前
 ### SqlSessionFactoryBuilder
 - 在不同条件下，使用建造者模式来统一创建SqlSessionFactory
 ### SqlSessionFactory
