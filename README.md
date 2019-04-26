@@ -1,5 +1,28 @@
 # SpringBoot-learning
-SpringBoot学习
+> 2004年3月24日 Spring Framework 1.0 Final Released
+
+## spring-beans
+### org.springframework.beans.factory.config
+- BeanDefinition `1.0`
+- BeanFactory `1.0`
+- BeanDefinitionRegistry `1.0`
+- BeanDefinitionReader `1.1`
+
+## spring-core
+### org.springframework.core.type
+- ResourceLoader `1.0`
+- ClassMetadata `2.5`
+- AnnotationMetadata `2.5`
+- MethodMetadata `3.0`
+- AnnotatedTypeMetadata `4.0`
+
+
+
+
+
+
+
+
 
 ##  RestTemplate
 ### 配置
