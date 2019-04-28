@@ -16,9 +16,9 @@
 - MethodMetadata `3.0`
 - AnnotatedTypeMetadata `4.0`
 
-
-
-
+## 两种后处理器
+- Bean后处理器: 这种后处理器会对容器中Bean进行后处理，对Bean进行额外加强；
+- 容器后处理器: 这种后处理器会对IoC容器进行后处理，用于增强容器功能
 
 
 
