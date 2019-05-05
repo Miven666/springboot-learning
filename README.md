@@ -1,6 +1,10 @@
 # SpringBoot-learning
 > 2004年3月24日 Spring Framework 1.0 Final Released
 
+## [SpringBoot-start](https://github.com/Miven666/SpringBoot-learing/tree/master/springboot-start)
+- 启动流程
+- 注解说明
+
 ## spring-beans
 ### org.springframework.beans.factory.config
 - BeanDefinition `1.0`
@@ -49,8 +53,8 @@ public class RestTemplateConfig {
     private RestTemplateBuilder builder;
 	
     /**
-    *  为Content-Type添加对 'text/javascript' 类型的支持
-	*/
+     *  为Content-Type添加对 'text/javascript' 类型的支持
+	 */
     @Bean
     public RestTemplate restTemplate() {
         // 先获取到converter列表
