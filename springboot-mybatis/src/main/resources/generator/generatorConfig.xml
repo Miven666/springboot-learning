@@ -3,43 +3,49 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-    <context id="mysql">
-        <!-- 生成的POJO实现java.io.Serializable接口 -->
-        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
-        <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin" />
+    <properties resource="application.properties" />
 
-        <commentGenerator>
-            <property name="addRemarkComments" value="true" />
-        </commentGenerator>
+    <!--不生成和Example查询有关的内容-->
+    <context id="mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+      <property name="beginningDelimiter" value="`"/>
+      <property name="endingDelimiter" value="`"/>
+      <!--配置是否使用通用 Mapper 自带的注释扩展，默认 true-->
+      <property name="useMapperCommentGenerator" value="false"/>
 
-        <!--数据库链接URL，用户名、密码 -->
-        <jdbcConnection
-                driverClass="com.mysql.jdbc.Driver"
-                connectionURL="jdbc:mysql://127.0.0.1/springbootlearing?useSSL=false"
-                userId="root"
-                password="root123" />
+      <!-- 生成的POJO实现java.io.Serializable接口 -->
+      <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+      <!--<plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin" />-->
+      <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+        <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+        <property name="caseSensitive" value="true"/>
+      </plugin>
 
-        <javaTypeResolver>
-            <property name="forceBigDecimals" value="false"/>
-        </javaTypeResolver>
+      <!--数据库链接URL，用户名、密码 -->
+      <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
+                      connectionURL="${spring.datasource.url}"
+                      userId="${spring.datasource.username}"
+                      password="${spring.datasource.password}">
+      </jdbcConnection>
 
-        <!-- 生成模型的包名和位置-->
-        <javaModelGenerator targetPackage="com.miven.springboot.mybatis.entity" targetProject="src/main/java">
-            <property name="enableSubPackages" value="true"/>
-            <property name="trimStrings" value="true"/>
-        </javaModelGenerator>
+      <!-- 生成模型的包名和位置-->
+      <javaModelGenerator targetPackage="com.miven.springboot.mybatis.entity" targetProject="src/main/java">
+        <!--<property name="enableSubPackages" value="true"/>-->
+        <!--<property name="trimStrings" value="true"/>-->
+      </javaModelGenerator>
 
-        <!-- 生成映射文件的包名和位置-->
-        <sqlMapGenerator targetPackage="resources.mapper" targetProject="src/main">
-            <property name="enableSubPackages" value="true"/>
-        </sqlMapGenerator>
+      <!-- 生成映射文件的包名和位置-->
+      <sqlMapGenerator targetPackage="resources.mapper" targetProject="src/main">
+        <!--<property name="enableSubPackages" value="true"/>-->
+      </sqlMapGenerator>
 
-        <!-- 生成DAO的包名和位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.miven.springboot.mybatis.mapper" targetProject="src/main/java">
-            <property name="enableSubPackages" value="true"/>
-        </javaClientGenerator>
+      <!-- 生成DAO的包名和位置-->
+      <javaClientGenerator type="XMLMAPPER" targetPackage="com.miven.springboot.mybatis.mapper" targetProject="src/main/java">
+        <!--<property name="enableSubPackages" value="true"/>-->
+      </javaClientGenerator>
 
-        <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table tableName="teacher" domainObjectName="Teacher" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+      <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
+<!--      <table tableName="common_mapper">
+        <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      </table>-->
     </context>
 </generatorConfiguration>

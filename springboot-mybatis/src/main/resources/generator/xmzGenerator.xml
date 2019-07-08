@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <properties resource="generator/xmzGenerator.properties" />
+
+  <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+
+    <plugin type="com.miven.springboot.mybatis.generator.plugin.XmzMapperPlugin">
+      <property name="author" value="${xmz.comment.author}"/>
+      <property name="pattern" value="${xmz.comment.date.pattern}"/>
+      <property name="version" value="${xmz.comment.version}"/>
+      <property name="mappers" value="${mapper.basic}"/>
+      <!--区分大小写-->
+      <property name="caseSensitive" value="true"/>
+      <!--lombok扩展生成Data注解-->
+      <property name="lombok" value="Data"/>
+      <!-- 兼容数据库 字段定义不规范问题-->
+      <property name="forceAnnotation" value="true"/>
+    </plugin>
+
+    <commentGenerator type="com.miven.springboot.mybatis.generator.comment.XmzCommentGenerator">
+      <property name="javaFileEncoding" value="UTF-8" />
+    </commentGenerator>
+
+    <jdbcConnection driverClass="${jdbc.driver.class}"
+                    connectionURL="${jdbc.url}"
+                    userId="${jdbc.username}"
+                    password="${jdbc.password}">
+    </jdbcConnection>
+
+    <javaModelGenerator targetPackage="${mapper.model.package}"
+                        targetProject="D:\Github\SpringBoot-learing\springboot-mybatis\src\main\java">
+    </javaModelGenerator>
+
+    <sqlMapGenerator targetPackage="${mapper.xml.package}"
+                     targetProject="D:\Github\SpringBoot-learing\springboot-mybatis\src\main">
+    </sqlMapGenerator>
+
+    <javaClientGenerator targetPackage="${mapper.mapper.package}"
+                         targetProject="D:\Github\SpringBoot-learing\springboot-mybatis\src\main\java"
+                         type="XMLMAPPER">
+    </javaClientGenerator>
+
+    <!-- 代码保留 不用修改 如果有新增直接在下面增加 增加完之后 注释掉-->
+    <table tableName="common_mapper">
+      <property name="useActualColumnNames" value="true"/>
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+  </context>
+</generatorConfiguration>
