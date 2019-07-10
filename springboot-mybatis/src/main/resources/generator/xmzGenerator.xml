@@ -31,15 +31,15 @@
     </jdbcConnection>
 
     <javaModelGenerator targetPackage="${mapper.model.package}"
-                        targetProject="D:\Github\SpringBoot-learing\springboot-mybatis\src\main\java">
+                        targetProject="${mapper.model.project}">
     </javaModelGenerator>
 
     <sqlMapGenerator targetPackage="${mapper.xml.package}"
-                     targetProject="D:\Github\SpringBoot-learing\springboot-mybatis\src\main">
+                     targetProject="${mapper.xml.project}">
     </sqlMapGenerator>
 
     <javaClientGenerator targetPackage="${mapper.mapper.package}"
-                         targetProject="D:\Github\SpringBoot-learing\springboot-mybatis\src\main\java"
+                         targetProject="${mapper.mapper.project}"
                          type="XMLMAPPER">
     </javaClientGenerator>
 

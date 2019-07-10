@@ -17,4 +17,9 @@ public class CommonMapper {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    /**
+     * 姓名
+     */
+    private String name;
 }

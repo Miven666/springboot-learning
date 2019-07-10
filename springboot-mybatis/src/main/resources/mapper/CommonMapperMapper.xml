@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.miven.springboot.mybatis.mapper.CommonMapperMapper">
+<mapper namespace="com.miven.springboot.mybatis.repository.mapper.CommonMapperMapper">
   <resultMap id="BaseResultMap" type="com.miven.springboot.mybatis.entity.CommonMapper">
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
-  <resultMap id="BaseResultMap" type="com.miven.springboot.mybatis.entity.CommonMapper">
-    <id column="id" jdbcType="INTEGER" property="id" />
-  </resultMap>
+  <select id="selectByName" resultType="com.miven.springboot.mybatis.entity.CommonMapper">
+    select * from common_mapper where name = #{name};
+  </select>
 </mapper>

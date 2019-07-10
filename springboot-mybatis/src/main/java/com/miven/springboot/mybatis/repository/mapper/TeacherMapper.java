@@ -1,4 +1,4 @@
-package com.miven.springboot.mybatis.mapper;
+package com.miven.springboot.mybatis.repository.mapper;
 
 import com.miven.springboot.mybatis.entity.Teacher;
 import org.apache.ibatis.annotations.Mapper;

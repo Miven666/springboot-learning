@@ -2,7 +2,8 @@ package com.miven.springboot.mybatis.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.miven.springboot.mybatis.entity.Fruit;
-import com.miven.springboot.mybatis.mapper.FruitMapper;
+import com.miven.springboot.mybatis.repository.mapper.CommonMapperMapper;
+import com.miven.springboot.mybatis.repository.mapper.FruitMapper;
 import jdk.nashorn.internal.parser.JSONParser;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,9 @@ public class FruitController {
     @Resource
     private FruitMapper fruitMapper;
 
+    @Resource
+    private CommonMapperMapper cmm;
+
     @GetMapping("/insert")
     public String insert() {
         Fruit fruit = new Fruit();
@@ -37,5 +41,10 @@ public class FruitController {
         Fruit fruit = new Fruit();
         fruit.setName(name);
         return JSON.toJSONString(fruitMapper.select(fruit, "name"));
+    }
+
+    @GetMapping("/mapper")
+    public String mapper(@RequestParam("name") String name) {
+        return JSON.toJSONString(cmm.selectByName(name));
     }
 }
