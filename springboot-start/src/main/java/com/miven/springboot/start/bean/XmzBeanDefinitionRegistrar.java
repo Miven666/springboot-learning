@@ -5,8 +5,11 @@ import com.miven.springboot.start.annotation.XmzComponentScan;
 import com.miven.springboot.start.type.filter.XmzTypeFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
-import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
+import org.springframework.context.annotation.*;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
@@ -27,11 +30,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Xmz组件注册器
+ * Xmz组件注册器(一个自定义bean定义注册器)
+ * ImportBeanDefinitionRegistrar：
+ * 目的：对那些想注册成bean的类，添加些额外的定义规则
+ * 来源：{@link Import}
+ *      {@link Configuration}类中用了{@link Bean}的类
+ *      实现了{@link ImportSelector}接口中导入的
+ * 生命周期：当实现了XxxAware时，它的setXxx()是早于registerBeanDefinitions()
  * @author mingzhi.xie
  * @date 2019/5/5.
  */
-public class XmzBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar {
+public class XmzBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar, BeanFactoryAware {
 
     private static final Logger logger = LoggerFactory.getLogger(XmzBeanDefinitionRegistrar.class);
 
@@ -41,7 +50,13 @@ public class XmzBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar
 
 
     @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        logger.info("XxxAware 的 setXxx() 被执行了");
+    }
+
+    @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
+        logger.info("registerBeanDefinitions() 被执行了");
         Map<String, Object> metadataAnnotationAttributes = importingClassMetadata.getAnnotationAttributes(XmzComponentScan.class.getName());
 
         // 获取注册器所有属性

@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2018/9/27
  */
 @RestController
+@RequestMapping("/home")
 public class HomeController {
 
     @Autowired
     private HomeService homeService;
 
-    @RequestMapping("/")
-    String home() {
+    @RequestMapping("/door")
+    String door() {
         return homeService.getHome();
     }
 }
