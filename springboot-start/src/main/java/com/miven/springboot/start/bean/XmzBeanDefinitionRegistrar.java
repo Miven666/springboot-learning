@@ -31,12 +31,6 @@ import java.util.Map;
 
 /**
  * Xmz组件注册器(一个自定义bean定义注册器)
- * ImportBeanDefinitionRegistrar：
- * 目的：对那些想注册成bean的类，添加些额外的定义规则
- * 来源：{@link Import}
- *      {@link Configuration}类中用了{@link Bean}的类
- *      实现了{@link ImportSelector}接口中导入的
- * 生命周期：当实现了XxxAware时，它的setXxx()是早于registerBeanDefinitions()
  * @author mingzhi.xie
  * @date 2019/5/5.
  */
@@ -85,7 +79,7 @@ public class XmzBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar
 
     private void registerBeanDefinitions(HashMap<Integer, ? extends Class<?>> candidates) {
         for (Integer key : candidates.keySet()) {
-            if (XMZ_COMPONENT_MAPPING.values().contains(candidates.get(key))) {
+            if (XMZ_COMPONENT_MAPPING.containsValue(candidates.get(key))) {
                 logger.error("重复扫描{}类,忽略重复注册", candidates.get(key));
                 continue;
             }
