@@ -34,6 +34,11 @@
             <artifactId>miven-core</artifactId>
             <version>${miven.version}</version>
         </dependency>
+        <dependency>
+            <groupId>miven.java</groupId>
+            <artifactId>miven-entity</artifactId>
+            <version>${miven.version}</version>
+        </dependency>
 
         <!--添加Web应用程序的典型依赖项-->
         <dependency>

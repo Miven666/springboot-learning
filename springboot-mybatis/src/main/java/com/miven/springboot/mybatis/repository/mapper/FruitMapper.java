@@ -1,6 +1,6 @@
 package com.miven.springboot.mybatis.repository.mapper;
 
-import com.miven.springboot.mybatis.entity.Fruit;
+import com.miven.entity.Fruit;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

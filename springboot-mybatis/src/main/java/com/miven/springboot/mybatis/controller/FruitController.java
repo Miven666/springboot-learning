@@ -1,7 +1,7 @@
 package com.miven.springboot.mybatis.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.miven.springboot.mybatis.entity.Fruit;
+import com.miven.entity.Fruit;
 import com.miven.springboot.mybatis.repository.mapper.CommonMapperMapper;
 import com.miven.springboot.mybatis.repository.mapper.FruitMapper;
 import jdk.nashorn.internal.parser.JSONParser;
