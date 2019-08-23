@@ -1,6 +1,7 @@
-package com.miven.springboot.demo;
+package com.miven.spring.web;
 
 import com.miven.spring.context.XmzSampleBeanDefinitionRegistrar;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -9,11 +10,12 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 /**
- * 跨域资源共享
+ * 跨域配置类
  * @author mingzhi.xie
  * @date 2018/9/27
  */
 @Configuration
+@ConditionalOnClass(CorsFilter.class)
 @Import(XmzSampleBeanDefinitionRegistrar.class)
 public class CorsConfig {
 

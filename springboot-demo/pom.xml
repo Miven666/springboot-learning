@@ -4,32 +4,24 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>miven.springboot</groupId>
     <artifactId>springboot-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <!--继承Spring Boot的默认值-->
-    <!--<parent>-->
-    <!--    <groupId>org.springframework.boot</groupId>-->
-    <!--    <artifactId>spring-boot-starter-parent</artifactId>-->
-    <!--    <version>2.0.2.RELEASE</version>-->
-    <!--</parent>-->
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-        <resource.delimiter>@</resource.delimiter>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-
-        <springboot.version>2.1.5.RELEASE</springboot.version>
-    </properties>
-
+    <parent>
+        <groupId>miven.springboot</groupId>
+        <artifactId>springboot-learning</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
     <!--添加Web应用程序的典型依赖项-->
     <dependencies>
+        <dependency>
+            <groupId>miven.spring</groupId>
+            <artifactId>spring-3.0.x-learning</artifactId>
+            <version>${miven.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -42,12 +34,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.miven.spring</groupId>
-            <artifactId>spring-3.0.x-learning</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
@@ -71,15 +57,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${springboot.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                            <goal>build-info</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
