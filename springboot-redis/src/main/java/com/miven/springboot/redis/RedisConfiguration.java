@@ -33,10 +33,10 @@ public class RedisConfiguration {
     }
 
     @Bean
-    RedisMessageListenerContainer container(RedisConnectionFactory factory, MessageListenerAdapter adapter) {
+    RedisMessageListenerContainer container(RedisConnectionFactory factory, MessageListenerAdapter listenerAdapter) {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(factory);
-        container.addMessageListener(adapter, new PatternTopic("chat"));
+        container.addMessageListener(listenerAdapter, new PatternTopic("chat"));
         return container;
     }
 
