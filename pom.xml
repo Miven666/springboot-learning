@@ -35,6 +35,7 @@
         <module>springboot-mongodb</module>
         <module>springboot-rabbitmq</module>
         <module>springboot-jms</module>
+        <module>springboot-cache</module>
     </modules>
 
     <dependencies>
