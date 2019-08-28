@@ -19,7 +19,6 @@
         <springboot.version>2.1.6.RELEASE</springboot.version>
 
         <alibaba.fastjson.version>1.2.56</alibaba.fastjson.version>
-        <lombok.version>1.18.6</lombok.version>
         <miven.version>1.0</miven.version>
         <mybatis.generator.version>1.3.7</mybatis.generator.version>
         <mysql.connector.version>5.1.46</mysql.connector.version>
@@ -35,14 +34,14 @@
         <module>springboot-mybatis</module>
         <module>springboot-mongodb</module>
         <module>springboot-rabbitmq</module>
+        <module>springboot-jms</module>
     </modules>
 
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
@@ -52,6 +51,14 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-parent</artifactId>
                 <version>${springboot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>miven.java</groupId>
+                <artifactId>miven-dependencies-parent</artifactId>
+                <version>${miven.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

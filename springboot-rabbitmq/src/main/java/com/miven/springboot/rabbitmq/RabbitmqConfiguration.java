@@ -71,6 +71,7 @@ public class RabbitmqConfiguration {
             log.info("Sending message ...");
             rabbitTemplate.convertAndSend(TOPIC_EXCHANGE_NAME, "routing.key.A", "Hello from RabbitMQ!");
             latch.await(10000, TimeUnit.MILLISECONDS);
+            System.exit(0);
         };
     }
 }

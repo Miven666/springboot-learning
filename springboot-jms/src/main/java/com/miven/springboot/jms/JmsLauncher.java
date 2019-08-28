@@ -1,4 +1,4 @@
-package com.miven.springboot.rabbitmq;
+package com.miven.springboot.jms;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,13 +6,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  *  启动器
  * @author mingzhi.xie
- * @date 2019/8/26
+ * @date 2019/8/27
  * @since 1.0
  */
 @SpringBootApplication
-public class RabbitmqLauncher {
+public class JmsLauncher {
 
     public static void main(String[] args) {
-        SpringApplication.run(RabbitmqLauncher.class, args);
+        SpringApplication.run(JmsLauncher.class, args);
     }
 }
