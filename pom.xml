@@ -36,6 +36,7 @@
         <module>springboot-rabbitmq</module>
         <module>springboot-jms</module>
         <module>springboot-cache</module>
+        <module>springboot-annotation</module>
     </modules>
 
     <dependencies>
