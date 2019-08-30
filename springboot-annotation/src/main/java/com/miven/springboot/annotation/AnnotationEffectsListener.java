@@ -1,6 +1,7 @@
 package com.miven.springboot.annotation;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
@@ -17,13 +18,43 @@ import org.springframework.stereotype.Component;
 public class AnnotationEffectsListener {
 
     /**
-     *  检测l@ConditionalOnBean 注解是否生效
+     *  检测l注解是否生效
+     *      ConditionalOnBean
+     *      ConditionalOnClass
+     *      ConditionalOnProperty
+     *      ConditionalOnNotWebApplication
      * @param event 上下文刷新事件
      */
     @EventListener(ContextRefreshedEvent.class)
     public void listenerRefreshed(ContextRefreshedEvent event) {
         ApplicationContext context = event.getApplicationContext();
-        OnBeanConditionConfiguration bean = context.getBean(OnBeanConditionConfiguration.class);
-        log.info(bean.toString());
+
+        try {
+            OnBeanConditionConfiguration onBean = context.getBean(OnBeanConditionConfiguration.class);
+            log.info(onBean.toString());
+        } catch (BeansException e) {
+            log.error(e.getMessage());
+        }
+
+        try {
+            OnClassConditionConfiguration onClass = context.getBean(OnClassConditionConfiguration.class);
+            log.info(onClass.toString());
+        } catch (BeansException e) {
+            log.error(e.getMessage());
+        }
+
+        try {
+            OnNotWebApplicationConditionConfiguration onNotWeb = context.getBean(OnNotWebApplicationConditionConfiguration.class);
+            log.info(onNotWeb.toString());
+        } catch (BeansException e) {
+            log.error(e.getMessage());
+        }
+
+        try {
+            OnPropertyConditionConfiguration onProperty = context.getBean(OnPropertyConditionConfiguration.class);
+            log.info(onProperty.toString());
+        } catch (BeansException e) {
+            log.error(e.getMessage());
+        }
     }
 }
