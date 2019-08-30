@@ -11,6 +11,6 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ConditionalOnBean(ConditionComponent.class)
-public class OnBeanConfiguration {
+public class OnBeanConditionConfiguration {
 
 }
