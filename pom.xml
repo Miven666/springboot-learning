@@ -37,6 +37,7 @@
         <module>springboot-jms</module>
         <module>springboot-cache</module>
         <module>springboot-annotation</module>
+        <module>springboot-aop</module>
     </modules>
 
     <dependencies>
