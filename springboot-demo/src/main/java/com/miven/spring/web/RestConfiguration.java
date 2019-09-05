@@ -10,6 +10,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.Assert;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -43,10 +44,15 @@ public class RestConfiguration {
     @Bean
     public CommandLineRunner run(RestTemplate restTemplate) {
         return args -> {
-            Fruit fruit = restTemplate.getForObject("http://localhost:8081/app/fruit/select?name=apple", Fruit.class);
-            Assert.notNull(fruit, "fruit must not be null");
-            log.info("httpHeaders has contains key 'Authorization': {}", this.interceptor.containsKey("Authorization"));
-            log.info(fruit.toString());
+            Fruit fruit;
+            try {
+                fruit = restTemplate.getForObject("http://localhost:8081/app/fruit/select?name=apple", Fruit.class);
+                Assert.notNull(fruit, "fruit must not be null");
+                log.info("httpHeaders has contains key 'Authorization': {}", this.interceptor.containsKey("Authorization"));
+                log.info(fruit.toString());
+            } catch (RestClientException e) {
+                log.error("Remote call failed: {}", e.getMessage());
+            }
         };
     }
 }

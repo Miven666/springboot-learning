@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.core.AliasRegistry;
 
+import java.util.Arrays;
+
 /**
  * 自1.0引入，继承自{@link AliasRegistry}
  * {@link BeanDefinitionRegistry} bean定义注册器
@@ -34,15 +36,11 @@ public class BeanDefinitionRegistryComment {
 
     public static void getBeanDefinitionNamesMethod(BeanDefinitionRegistry registry) {
         String[] names = registry.getBeanDefinitionNames();
-        logger.info("所有bean的name:");
-        for (String name : names) {
-            logger.info(name);
-        }
-//        logger.info("所有bean的name:\n" + Arrays.toString(names));
+        logger.info("从 {} implements BeanDefinitionRegistry of getBeanDefinitionCount() 知所有 bean 的 name: {}", registry.getClass().getName(), Arrays.asList(names).toString());
     }
 
     public static void getBeanDefinitionCountMethod(BeanDefinitionRegistry registry) {
         int count = registry.getBeanDefinitionCount();
-        logger.info("所有被定义的bean的个数: " + count);
+        logger.info("从 {} implements BeanDefinitionRegistry of getBeanDefinitionCount() 知所有被定义的 bean 的个数: {}", registry.getClass().getName(), count);
     }
 }

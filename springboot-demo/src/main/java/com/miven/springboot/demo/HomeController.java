@@ -34,13 +34,13 @@ public class HomeController {
      */
     @GetMapping(value = "/desk")
     public String desk(@RequestBody Home home) {
-        log.info(home.toString());
+        log.debug(home.toString());
         return homeService.getHome();
     }
 
     @PostMapping(value = "/window", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String window(@RequestBody Home home) {
-        log.info(home.toString());
+        log.debug(home.toString());
         return homeService.getHome();
     }
 }

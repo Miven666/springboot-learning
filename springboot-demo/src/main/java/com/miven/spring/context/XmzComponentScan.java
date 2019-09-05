@@ -1,5 +1,6 @@
 package com.miven.spring.context;
 
+import com.miven.spring.beans.CustomBeanFactoryAware;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
@@ -12,7 +13,7 @@ import java.lang.annotation.*;
 @Documented
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Import(XmzBeanDefinitionRegistrar.class)
+@Import({XmzBeanDefinitionRegistrar.class, CustomBeanFactoryAware.class})
 public @interface XmzComponentScan {
 
     /**

@@ -1,12 +1,11 @@
 package com.miven.spring.context;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
@@ -31,23 +30,21 @@ import java.util.Map;
  * @author mingzhi.xie
  * @date 2019/5/5.
  */
+@Slf4j
 public class XmzBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar, BeanFactoryAware {
-
-    private static final Logger logger = LoggerFactory.getLogger(XmzBeanDefinitionRegistrar.class);
 
     private static final String RESOURCE_PATTERN = "/**/*.class";
 
     private static final Map<Integer, Class<?>> XMZ_COMPONENT_MAPPING = new HashMap<>();
 
-
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        logger.info("XxxAware 的 setXxx() 被执行了");
+        log.info("Starting XmzBeanDefinitionRegistrar implements BeanFactoryAware of setBeanFactory().");
     }
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
-        logger.info("registerBeanDefinitions() 被执行了");
+        log.info("Starting XmzBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar of BeanDefinitions().");
         Map<String, Object> metadataAnnotationAttributes = importingClassMetadata.getAnnotationAttributes(XmzComponentScan.class.getName());
 
         // 获取注册器所有属性
@@ -77,7 +74,7 @@ public class XmzBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar
     private void registerBeanDefinitions(HashMap<Integer, ? extends Class<?>> candidates) {
         for (Integer key : candidates.keySet()) {
             if (XMZ_COMPONENT_MAPPING.containsValue(candidates.get(key))) {
-                logger.error("重复扫描{}类,忽略重复注册", candidates.get(key));
+                log.error("重复扫描 {} 类，忽略重复注册", candidates.get(key));
                 continue;
             }
             XMZ_COMPONENT_MAPPING.put(key, candidates.get(key));
@@ -113,7 +110,7 @@ public class XmzBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar
         try {
             resources = ResourcePatternUtils.getResourcePatternResolver(resourceLoader).getResources(packageSearchPath);
         } catch (IOException e) {
-            logger.error("扫描XmzComponent基础类资源异常", e);
+            log.error("扫描 XmzComponent 基础类资源异常", e);
         }
 
         MetadataReaderFactory readerFactory = new SimpleMetadataReaderFactory(resourceLoader);
@@ -130,18 +127,18 @@ public class XmzBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar
                     int key = xmzComponent.value();
 
                     if (candidates.containsKey(key)) {
-                        logger.error("XmzComponent组件type值已存在:{}", candidateClass);
+                        log.error("XmzComponent 组件 type 值已存在: {}", candidateClass);
                         continue;
                     }
 
                     candidates.put(key, candidateClass);
-                    logger.info("扫描到符合要求XmzComponent基础类:{}", candidateClass);
+                    log.info("扫描到符合要求 XmzComponent 基础类: {}", candidateClass);
                 }
             }
         } catch (IOException e) {
-            logger.error("获取元数据读取器失败", e);
+            log.error("获取元数据读取器失败", e);
         } catch (ClassNotFoundException e) {
-            logger.error("未扫描到组件类", e);
+            log.error("未扫描到组件类", e);
         }
 
         return candidates;

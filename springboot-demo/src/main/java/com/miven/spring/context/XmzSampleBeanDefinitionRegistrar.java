@@ -1,9 +1,8 @@
 package com.miven.spring.context;
 
-import com.miven.spring.core.AnnotationMetadataComment;
 import com.miven.spring.beans.BeanDefinitionRegistryComment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.miven.spring.core.AnnotationMetadataComment;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
@@ -24,12 +23,12 @@ import org.springframework.core.type.AnnotationMetadata;
  * @date 2019/7/19
  * @since 1.0
  */
+@Slf4j
 public class XmzSampleBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar, BeanFactoryAware {
-    private static final Logger logger = LoggerFactory.getLogger(XmzSampleBeanDefinitionRegistrar.class);
 
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        logger.info("sample setXxx() is running");
+        log.info("Starting XmzSampleBeanDefinitionRegistry setBeanFactory() with beanFactory: {}.", beanFactory.getClass().getName());
     }
 
     /**
@@ -39,7 +38,7 @@ public class XmzSampleBeanDefinitionRegistrar implements ImportBeanDefinitionReg
      */
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
-        logger.info("sample registerBeanDefinitions() is running");
+        log.info("Starting XmzSampleBeanDefinitionRegistry registerBeanDefinitions().");
         AnnotationMetadataComment.getAnnotationTypesMethod(importingClassMetadata);
         AnnotationMetadataComment.getMetaAnnotationTypesMethod(importingClassMetadata, "org.springframework.context.annotation.Configuration");
         BeanDefinitionRegistryComment.getBeanDefinitionCountMethod(registry);

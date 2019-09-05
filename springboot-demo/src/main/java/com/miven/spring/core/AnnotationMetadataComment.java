@@ -6,6 +6,7 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.core.type.ClassMetadata;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 /**
@@ -37,19 +38,11 @@ public class AnnotationMetadataComment {
 
     public static void getAnnotationTypesMethod(AnnotationMetadata am) {
         Set<String> annotationTypes = am.getAnnotationTypes();
-        StringBuilder annotationTypesSb = new StringBuilder("\n");
-        for (String annotationType : annotationTypes) {
-            annotationTypesSb.append(annotationType).append(", ");
-        }
-        logger.info("getAnnotationTypes() 是获取import注解所在类上的所有注解的类型，即本示例中：" + annotationTypesSb);
+        logger.info("AnnotationMetadata of getAnnotationTypes() 是获取 import 注解所在类(配置类、派生注解所在配置类)上的所有注解的类型，即本示例中 {}：{}",am.getClassName(), new ArrayList<>(annotationTypes));
     }
 
     public static void getMetaAnnotationTypesMethod(AnnotationMetadata am, String annotationName) {
         Set<String> configuration = am.getMetaAnnotationTypes(annotationName);
-        StringBuilder configAnnotationMetaSb = new StringBuilder("\n");
-        for (String configAnnotationMeta : configuration) {
-            configAnnotationMetaSb.append(configAnnotationMeta).append(", ");
-        }
-        logger.info("getMetaAnnotationTypes(String annotationName) 是获取指定注解的注解的所有类型，即本示例中：" + configAnnotationMetaSb);
+        logger.info("AnnotationMetadata of getMetaAnnotationTypes(String annotationName) 是获取指定注解的注解的所有类型，即本示例中指定注解 {}：{}", annotationName, new ArrayList<>(configuration));
     }
 }
