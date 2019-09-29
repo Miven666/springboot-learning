@@ -1,6 +1,7 @@
 # SpringBoot-demo
 
-## ![启动流程](./SpringBootActive.png)
+## 启动流程
+![SpringBootActive](./SpringBootActive.png)
 1. 通过`SpringFactoriesLoader`加载`META-INF/spring.factories`文件，获取并创建运行监听器`SpringApplicationRunListener`对象
 2. 由监听器`SpringApplicationRunListener`来发出`starting`消息
 3. 创建参数，并配置`Environment`
