@@ -10,6 +10,6 @@ import org.springframework.context.annotation.Configuration;
  * @since 1.0
  */
 @Configuration
-@ConditionalOnProperty(prefix = "server", name = "port", havingValue = "8080")
+@ConditionalOnProperty(prefix = "server", name = "port", havingValue = "8080", matchIfMissing = true)
 public class OnPropertyConditionConfiguration {
 }
