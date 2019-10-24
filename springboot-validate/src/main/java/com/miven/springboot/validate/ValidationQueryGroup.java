@@ -1,7 +1,7 @@
 package com.miven.springboot.validate;
 
+import com.miven.core.validation.groups.Query;
 import com.miven.entity.Fruit;
-import com.miven.entity.valid.Query;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
