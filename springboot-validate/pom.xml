@@ -23,5 +23,9 @@
             <groupId>miven.java</groupId>
             <artifactId>miven-entity</artifactId>
         </dependency>
+        <dependency>
+            <groupId>miven.java</groupId>
+            <artifactId>miven-core</artifactId>
+        </dependency>
     </dependencies>
 </project>

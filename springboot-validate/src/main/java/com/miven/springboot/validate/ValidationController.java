@@ -2,6 +2,7 @@ package com.miven.springboot.validate;
 
 import com.miven.entity.Fruit;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,9 @@ public class ValidationController {
 
     @Resource
     private ValidationDeleteGroup validationDeleteGroup;
+
+    @Resource
+    private ValidationSequence validationSequence;
 
     @GetMapping("/validated/fruit")
     public Fruit validatedPojo(@Validated Fruit fruit) {
@@ -61,6 +65,7 @@ public class ValidationController {
     public Fruit validatedComponentPojo(@Validated Fruit fruit) {
         log.info(fruit.toString());
         fruit.setName(null);
+        fruit.setNumber(0);
         return validationComponent.validatedPojo(fruit);
     }
 
@@ -68,6 +73,8 @@ public class ValidationController {
     public Fruit validComponentPojo(@Valid Fruit fruit) {
         log.info(fruit.toString());
         fruit.setName(null);
+        fruit.setNumber(0);
+        fruit.setConsumer(null);
         return validationComponent.validPojo(fruit);
     }
 
@@ -99,5 +106,15 @@ public class ValidationController {
         log.info(fruit.toString());
         fruit.setNumber(0);
         return validationDeleteGroup.validPojo(fruit);
+    }
+
+    @GetMapping("/valid/fruit/group/sequence")
+    public Fruit validSequence(@Valid Fruit fruit, BindingResult bindingResult) {
+        log.info(fruit.toString());
+        fruit.setName(null);
+        fruit.setConsumer(null);
+        fruit.setNumber(0);
+        log.info(bindingResult.toString());
+        return validationSequence.validQueryDelete(fruit);
     }
 }
