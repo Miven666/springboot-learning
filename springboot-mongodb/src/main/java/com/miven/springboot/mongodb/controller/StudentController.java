@@ -16,7 +16,7 @@ public class StudentController {
 
     @PostMapping
     public String insert() {
-        Student student = Student.builder().id(18).name("解明智").build();
+        Student student = Student.builder().id(17).name("解明智").age(26).build();
         mongoDao.save(student);
         return "OK";
     }
