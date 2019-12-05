@@ -57,8 +57,8 @@ public class RedisConfiguration {
     }
 
     @Bean
-    Jackson2JsonRedisSerializer jacksonRedisSerializer() {
-        Jackson2JsonRedisSerializer jacksonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
+    Jackson2JsonRedisSerializer<?> jacksonRedisSerializer() {
+        Jackson2JsonRedisSerializer<?> jacksonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
         ObjectMapper om = new ObjectMapper();
         // 指定序列化输入的类型，类必须是非final修饰的，final修饰的类，比如String,Integer等会抛出异常
         om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
@@ -69,7 +69,7 @@ public class RedisConfiguration {
     }
 
     @Bean
-    RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory, Jackson2JsonRedisSerializer jacksonRedisSerializer) {
+    RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory, Jackson2JsonRedisSerializer<?> jacksonRedisSerializer) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(connectionFactory);
         redisTemplate.setDefaultSerializer(StringRedisSerializer.UTF_8);
