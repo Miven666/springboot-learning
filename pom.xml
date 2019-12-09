@@ -40,6 +40,7 @@
         <module>springboot-aop</module>
         <module>springboot-validate</module>
         <module>springboot-test</module>
+        <module>springboot-jta</module>
     </modules>
 
     <dependencies>
