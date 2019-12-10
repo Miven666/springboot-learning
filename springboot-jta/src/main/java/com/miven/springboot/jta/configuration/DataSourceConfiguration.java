@@ -3,7 +3,7 @@ package com.miven.springboot.jta.configuration;
 import com.mysql.cj.jdbc.MysqlXADataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -27,6 +27,9 @@ import java.sql.SQLException;
 public class DataSourceConfiguration {
 
     @Configuration
+    @MapperScan(
+            basePackages = "com.miven.springboot.jta.mapper.db1",
+            sqlSessionFactoryRef = "db1SqlSessionFactory")
     protected class DataSource1Configuration {
         /**
          * 数据源1
@@ -48,15 +51,12 @@ public class DataSourceConfiguration {
             MybatisProperties mybatis1 = dataSourceProperties.getMybatis1();
             return builderSqlSessionFactory(dataSource, mybatis1.getLocationPattern());
         }
-
-        @Primary
-        @Bean(name = "db1SqlSessionTemplate")
-        public SqlSessionTemplate sqlSessionTemplate(@Qualifier("db1SqlSessionFactory") SqlSessionFactory sqlSessionFactory) {
-            return new SqlSessionTemplate(sqlSessionFactory);
-        }
     }
 
     @Configuration
+    @MapperScan(
+            basePackages = "com.miven.springboot.jta.mapper.db2",
+            sqlSessionFactoryRef = "db2SqlSessionFactory")
     protected class DataSource2Configuration {
 
         @Bean(name = "db2DataSource")
@@ -65,32 +65,25 @@ public class DataSourceConfiguration {
             return builderDataSourceBean(db2, "db2DataSource");
         }
 
-        @Primary
         @Bean(name = "db2SqlSessionFactory")
         public SqlSessionFactory sqlSessionFactory(@Qualifier("db2DataSource") DataSource dataSource, DataSourceProperties dataSourceProperties) throws Exception {
             MybatisProperties mybatis2 = dataSourceProperties.getMybatis2();
             return builderSqlSessionFactory(dataSource, mybatis2.getLocationPattern());
-        }
-
-        @Primary
-        @Bean(name = "db2SqlSessionTemplate")
-        public SqlSessionTemplate sqlSessionTemplate(@Qualifier("db2SqlSessionFactory") SqlSessionFactory sqlSessionFactory) {
-            return new SqlSessionTemplate(sqlSessionFactory);
         }
     }
 
 
     private AtomikosDataSourceBean builderDataSourceBean(DataBaseProperties db, String resourceName) throws SQLException {
         // 设置数据库连接
-        MysqlXADataSource mysqlXADataSource = new MysqlXADataSource();
-        mysqlXADataSource.setUrl(db.getUrl());
-        mysqlXADataSource.setUser(db.getUsername());
-        mysqlXADataSource.setPassword(db.getPassword());
-        mysqlXADataSource.setPinGlobalTxToPhysicalConnection(true);
+        MysqlXADataSource mysqlXaDataSource = new MysqlXADataSource();
+        mysqlXaDataSource.setUrl(db.getUrl());
+        mysqlXaDataSource.setUser(db.getUsername());
+        mysqlXaDataSource.setPassword(db.getPassword());
+        mysqlXaDataSource.setPinGlobalTxToPhysicalConnection(true);
 
         // 交给事务管理器进行管理
         AtomikosDataSourceBean atomikosDataSourceBean = new AtomikosDataSourceBean();
-        atomikosDataSourceBean.setXaDataSource(mysqlXADataSource);
+        atomikosDataSourceBean.setXaDataSource(mysqlXaDataSource);
         atomikosDataSourceBean.setUniqueResourceName(resourceName);
         return atomikosDataSourceBean;
     }
