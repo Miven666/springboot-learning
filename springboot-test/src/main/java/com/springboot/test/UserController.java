@@ -4,13 +4,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
+
 /**
  * @author mingzhi.xie
  * @date 2019/10/31
  * @since 1.0
  */
 @RestController
-@RequestMapping(value="/users")
+@RequestMapping(value="/users", produces = APPLICATION_JSON_UTF8_VALUE)
 public class UserController {
 
     /**
@@ -23,8 +25,9 @@ public class UserController {
         return new ArrayList<>(users.values());
     }
 
+    @ResponseBody
     @RequestMapping(value="/", method=RequestMethod.POST)
-    public String postUser( @RequestBody User user) {
+    public String postUser(@RequestBody User user) {
         users.put(user.getId(), user);
         return "success";
     }

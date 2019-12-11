@@ -1,5 +1,6 @@
 package com.springboot.test;
 
+import com.alibaba.fastjson.JSON;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -44,10 +46,13 @@ public class UserControllerTest extends TestLauncherTest {
      */
     @Test
     public void test002() throws Exception {
+        User user = new User();
+        user.setId(1L);
+        user.setName("测试大师");
+        user.setAge(20);
         request = post("/users/")
-                .param("id", "1")
-                .param("name", "测试大师")
-                .param("age", "20");
+                .contentType(APPLICATION_JSON_UTF8)
+                .content(JSON.toJSONString(user));
         mockMvc.perform(request)
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(content().string(equalTo("success")));
