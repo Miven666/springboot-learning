@@ -15,6 +15,13 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
+    <properties>
+        <mysql.connector.version>5.1.46</mysql.connector.version>
+        <mybatis.generator.version>1.3.7</mybatis.generator.version>
+        <tk.mapper.version>4.1.5</tk.mapper.version>
+        <tk.mapper.generator.version>1.1.5</tk.mapper.generator.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>miven.java</groupId>
@@ -47,29 +54,24 @@
         <dependency>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-core</artifactId>
-            <version>${mybatis.generator.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>${pagehelper.starter.version}</version>
         </dependency>
         <!--通用mapper-->
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
-            <version>${tk.mapper.starter.version}</version>
         </dependency>
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-generator</artifactId>
-            <version>${tk.mapper.generator.version}</version>
         </dependency>
 
         <dependency>
           <groupId>com.alibaba</groupId>
           <artifactId>fastjson</artifactId>
-          <version>${alibaba.fastjson.version}</version>
         </dependency>
     </dependencies>
 
