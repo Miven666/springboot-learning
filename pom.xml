@@ -38,6 +38,7 @@
         <module>springboot-validate</module>
         <module>springboot-test</module>
         <module>springboot-jta</module>
+        <module>springboot-transaction</module>
     </modules>
 
     <dependencies>
