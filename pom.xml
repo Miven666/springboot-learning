@@ -39,6 +39,7 @@
         <module>springboot-test</module>
         <module>springboot-jta</module>
         <module>springboot-transaction</module>
+        <module>springboot-dds</module>
     </modules>
 
     <dependencies>
