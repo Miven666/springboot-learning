@@ -21,6 +21,10 @@
             <groupId>miven.java</groupId>
             <artifactId>miven-entity</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

@@ -17,17 +17,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class BookRepository {
 
-    @Cacheable(value = "some book", key = "#p0")
-    public Book getByIsbn(String isbn, String title) {
-        try {
-            Thread.sleep(2000L);
-        } catch (InterruptedException e) {
-            throw new IllegalStateException(e);
-        }
-
-        return  new Book(isbn, title);
-    }
-
     @Cacheable(cacheNames = "one book", key = "#p0")
     public Book getBook(String isbn, String title) {
         try {
@@ -50,11 +39,11 @@ public class BookRepository {
         return  new Book(isbn, title);
     }
 
-    @CacheEvict(cacheNames = "some book", key = "#p0", allEntries = true, beforeInvocation = true)
+    @CacheEvict(cacheNames = "one book", key = "#p0", allEntries = true, beforeInvocation = true)
     public void removeBook(String isbn, String title) {
         try {
             Thread.sleep(2000L);
-            log.info("Removing " + title + " with isbn is "+ isbn);
+            log.info("根据 {} {}", isbn, title);
         } catch (InterruptedException e) {
             throw new IllegalStateException(e);
         }
