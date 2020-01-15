@@ -1,7 +1,7 @@
 package com.miven.spring.web;
 
 import com.miven.entity.Fruit;
-import com.miven.spring3.web.DefaultClientHttpRequestInterceptor;
+import com.miven.spring31.web.DefaultClientHttpRequestInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
