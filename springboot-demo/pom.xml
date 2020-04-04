@@ -17,11 +17,6 @@
     <!--添加Web应用程序的典型依赖项-->
     <dependencies>
         <dependency>
-            <groupId>miven.spring</groupId>
-            <artifactId>spring-3.1.x-learning</artifactId>
-            <version>${miven.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
