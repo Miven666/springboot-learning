@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -37,6 +39,12 @@ public class ValidationController {
 
     @GetMapping("/validated/fruit")
     public Fruit validatedPojo(@Validated Fruit fruit) {
+        log.info(fruit.toString());
+        return fruit;
+    }
+
+    @PostMapping("/validated/fruit")
+    public Fruit validatedPojoPost(@Validated @RequestBody Fruit fruit) {
         log.info(fruit.toString());
         return fruit;
     }
