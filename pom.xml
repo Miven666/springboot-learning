@@ -17,6 +17,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <miven.version>1.0</miven.version>
+        <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
 
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
@@ -41,6 +42,7 @@
         <module>springboot-transaction</module>
         <module>springboot-dds</module>
         <module>springboot-redis-cluster</module>
+        <module>springboot-mvc</module>
     </modules>
 
     <dependencies>
@@ -58,11 +60,19 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-loader</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>miven.java</groupId>
                 <artifactId>miven-dependencies-parent</artifactId>
