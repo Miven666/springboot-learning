@@ -1,5 +1,6 @@
 package com.miven.springboot.demo;
 
+import io.micrometer.core.annotation.Timed;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import javax.annotation.Resource;
  * @date 2018/9/27
  */
 @Slf4j
+@Timed
 @RestController
 @RequestMapping("/home")
 public class HomeController {
@@ -24,6 +26,7 @@ public class HomeController {
      * @return String 默认"Content-Type: text/plain;charset=UTF-8"
      */
     @RequestMapping("/door")
+    @Timed(value = "door", longTask = true)
     public String door() {
         return homeService.getHome();
     }
