@@ -43,6 +43,7 @@
         <module>springboot-dds</module>
         <module>springboot-redis-cluster</module>
         <module>springboot-mvc</module>
+        <module>springboot-prometheus</module>
     </modules>
 
     <dependencies>
