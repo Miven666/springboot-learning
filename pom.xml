@@ -45,6 +45,7 @@
         <module>springboot-mvc</module>
         <module>springboot-prometheus</module>
         <module>springboot-elasticsearch</module>
+        <module>springboot-magic</module>
     </modules>
 
     <dependencies>
