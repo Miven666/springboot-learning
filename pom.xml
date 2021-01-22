@@ -46,6 +46,8 @@
         <module>springboot-prometheus</module>
         <module>springboot-elasticsearch</module>
         <module>springboot-magic</module>
+        <module>springboot-scheduled</module>
+        <module>springboot-freemarker</module>
     </modules>
 
     <dependencies>

@@ -1,21 +1,18 @@
 package com.miven.springboot.elasticsearch.configuration;
 
 import com.google.gson.Gson;
+import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.MatchQueryBuilder;
-import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryStringQueryBuilder;
 import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.Aggregations;
-import org.elasticsearch.search.aggregations.AggregatorFactories;
-import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramAggregationBuilder;
 import org.elasticsearch.search.aggregations.bucket.histogram.ExtendedBounds;
 import org.elasticsearch.search.aggregations.metrics.AvgAggregationBuilder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
@@ -26,18 +23,18 @@ import org.springframework.data.elasticsearch.client.ClientConfiguration;
 import org.springframework.data.elasticsearch.client.RestClients;
 import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfiguration;
 
-import static org.elasticsearch.index.query.Operator.AND;
 import static org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramInterval.minutes;
 
 /**
  * @author mingzhi.xie
  * @since 2020/10/15 1.0
  */
+@Slf4j
 @Configuration
 public class ElasticsearchConfiguration extends AbstractElasticsearchConfiguration {
 
-    @Bean
     @Override
+    @Bean(destroyMethod = "close")
     public RestHighLevelClient elasticsearchClient() {
         final ClientConfiguration clientConfiguration = ClientConfiguration.builder()
                 .connectedTo("127.0.0.1:9200")
@@ -57,7 +54,7 @@ public class ElasticsearchConfiguration extends AbstractElasticsearchConfigurati
                     .lte("1602924440637")
                     .format("epoch_millis");
 
-            QueryStringQueryBuilder stringQueryBuilder = new QueryStringQueryBuilder("app_id:***");
+            QueryStringQueryBuilder stringQueryBuilder = new QueryStringQueryBuilder("app_id:10749");
 
             BoolQueryBuilder boolQueryBuilder = new BoolQueryBuilder()
                     .filter(rangeQueryBuilder)
@@ -69,7 +66,7 @@ public class ElasticsearchConfiguration extends AbstractElasticsearchConfigurati
             AggregationBuilder aggregationBuilder = AggregationBuilders
                     .dateHistogram("time")
                     .field("@timestamp")
-                    .fixedInterval(minutes(2))
+                    .calendarInterval(minutes(2))
                     .extendedBounds(new ExtendedBounds(1602751640636L, 1602924440637L))
                     .format("epoch_millis")
                     .subAggregation(avgAggregationBuilder);
@@ -86,7 +83,7 @@ public class ElasticsearchConfiguration extends AbstractElasticsearchConfigurati
             SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
             Aggregations aggregations = searchResponse.getAggregations();
             Aggregation time = aggregations.get("time");
-            System.out.println(new Gson().toJson(time));
+            log.info(new Gson().toJson(time));
         };
     }
 }
