@@ -70,8 +70,13 @@ public class RabbitmqConfiguration {
         return args -> {
             log.info("Sending message ...");
             rabbitTemplate.convertAndSend(TOPIC_EXCHANGE_NAME, "routing.key.A", "Hello from RabbitMQ!");
-            latch.await(10000, TimeUnit.MILLISECONDS);
-            System.exit(0);
+
+            long timeout = 10000;
+            if (latch.await(timeout, TimeUnit.MILLISECONDS)) {
+                System.exit(0);
+            } else {
+                System.exit(-1);
+            }
         };
     }
 }
