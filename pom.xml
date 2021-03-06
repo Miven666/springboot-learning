@@ -49,6 +49,7 @@
         <module>springboot-scheduled</module>
         <module>springboot-freemarker</module>
         <module>springboot-security</module>
+        <module>springboot-jooq</module>
     </modules>
 
     <dependencies>
