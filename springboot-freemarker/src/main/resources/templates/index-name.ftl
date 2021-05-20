@@ -5,6 +5,9 @@
   <title>Site Demo</title>
 </head>
 <body>
-<h1 style="color: green">Hello World</h1>
+<h1 style="color: green">${name}</h1>
+<@demo>
+  <h1 style="color: chocolate">${name}</h1>
+</@demo>
 </body>
 </html>
