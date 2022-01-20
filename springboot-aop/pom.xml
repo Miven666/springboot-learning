@@ -17,10 +17,5 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>miven.java</groupId>
-            <artifactId>miven-entity</artifactId>
-        </dependency>
     </dependencies>
 </project>
